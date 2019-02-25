@@ -1,24 +1,57 @@
-# README
+## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## salonsテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|detail|text|null: true|
+|organizer|string|null: false|
+|media|string|null: true|
+|image|string|null: true|
 
-* Ruby version
+### Association
+- has_many :reviews
+- has_many :tags
 
-* System dependencies
+## usersテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+|age|integer|null: false|
+|image|string|null: true|
+|detail|text|null: true|
 
-* Database creation
+### Association
+- has_many :reviews
 
-* Database initialization
 
-* How to run the test suite
+## reviewsテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column|Type|Options|
+|------|----|-------|
+|good_point|text|null: false|
+|bad_point|text|null: false|
+|comprehensive|integer|null: false|
+|Vitality|integer|null: false|
+|information_volume|integer|null: false|
+|satisfaction_price|integer|null: false|
+|users_id|intger|null: false, foreign_key: true|
+|salon_id|intger|null: false, foreign_key: true|
 
-* Deployment instructions
+### Association
+- belongs_to :salon
+- belongs_to :user
 
-* ...
+## tagsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|salon_id|integer|null: false|
+
+### Association
+- belongs_to :salon
